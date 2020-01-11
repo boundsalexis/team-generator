@@ -19,7 +19,4 @@ class Employee {
     }
 }
 
-var jim = new Employee("sam", "wise", "ganji", "email");
-console.log(jim.id, jim.role);
-
 module.exports = Employee;
