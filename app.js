@@ -91,18 +91,48 @@ function promptIntern(){
 /////////////////////FILE FUNCTIONS//////////////
 
 function ReadAppend(file, appendFile){
-    fs.readFile(appendFile, function (err, data) {
-      if (err) throw err;
-      console.log('File was read');
+    fs.readFileSync(appendFile);
   
-      fs.appendFile(file, data, function (err) {
+      fs.appendFileSync(file, data);
+    };
+  
+function writeAllFiles(toAppend, headContent,managerContent, engineerContent, internContent, closingContent){
+    fs.writeFileSync('./templates/toAppend.html', toAppend, function (err) {
         if (err) throw err;
-        console.log('The "data to append" was appended to file!');
-  
-      });
-    });
-  }
-
+        console.log('Saved!');
+        });
+    fs.writeFileSync('./templates/headFile.html', headContent, function (err) {
+        if (err) throw err;
+        console.log('Saved!');
+        });
+    fs.writeFileSync('./templates/manager.html', managerContent, function (err) {
+        if (err) throw err;
+        console.log('Saved!');
+        });
+    fs.writeFileSync('./templates/engineer.html', engineerContent, function (err) {
+        if (err) throw err;
+        console.log('Saved!');
+        });
+    fs.writeFileSync('./templates/intern.html', internContent, function (err) {
+        if (err) throw err;
+        console.log('Saved!');
+        });
+    fs.writeFileSync('./templates/closingFile.html', closingContent, function (err) {
+        if (err) throw err;
+        console.log('Saved!');
+        });
+}
+// function appendAllFiles(){
+//     fs.appendFile('toAppend.html', "./templates/headFile.html", 'utf8',
+//     // callback function
+//     function(err) { 
+//         if (err) throw err;
+//         // if no error
+//         console.log("Data is appended to file successfully.")
+// });
+// }
+const toAppend = `
+`;
 const headContent= `
 <!DOCTYPE html>
 <html lang="en">
@@ -159,28 +189,15 @@ async function start() {
         let internContent = generateHTML(newIntern);
         console.log(managerContent);
         ////////////FILE WRITING///////////////
-        fs.writeFile('./template/headFile.html', headContent, function (err) {
-        if (err) throw err;
-        console.log('Saved!');
-        });
-        fs.writeFile('./template/manager.html', managerContent, function (err) {
-        if (err) throw err;
-        console.log('Saved!');
-        });
-        fs.writeFile('./template/engineer.html', engineerContent, function (err) {
-        if (err) throw err;
-        console.log('Saved!');
-        });
-        fs.writeFile('./template/intern.html', internContent, function (err) {
-        if (err) throw err;
-        console.log('Saved!');
-        });
-        fs.writeFile('./template/closingFile.html', closingContent, function (err) {
-        if (err) throw err;
-        console.log('Saved!');
-        });
+        writeAllFiles(toAppend, headContent, managerContent, engineerContent, internContent, closingContent);
         //////////// APPENDING FILES//////////
-        
+
+    //     ReadAppend("./templates/toAppend.html", './templates/headFile.html');
+    //     ReadAppend("./templates/toAppend.html", './templates/manager.html');
+    //   ReadAppend("./templates/toAppend.html", './templates/engineer.html');
+    //     ReadAppend("./templates/toAppend.html", './templates/intern.html');
+    //     ReadAppend("./templates/toAppend.html", './templates/closingFile.html');
+    
 
 
         
